@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Home({ posts }) {
+export default function Home({ posts, date }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -15,7 +15,9 @@ export default function Home({ posts }) {
   return (
     <div>
       <title>Mon blog</title>
-      <h1>Count : {count}</h1>
+      <h1>
+        Count : {count} - {date}
+      </h1>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
@@ -31,13 +33,14 @@ export default function Home({ posts }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const posts = await fetch(
     "http://jsonplaceholder.typicode.com/posts?_limit=4"
   ).then((response) => response.json());
   return {
     props: {
       posts,
+      date: new Date().toString(),
     },
   };
 }

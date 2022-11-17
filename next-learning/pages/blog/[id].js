@@ -13,7 +13,7 @@ export default function Post({ post }) {
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const post = await fetch(
     "http://jsonplaceholder.typicode.com/posts/" + params.id
   ).then((response) => response.json());
@@ -21,17 +21,5 @@ export async function getStaticProps({ params }) {
     props: {
       post,
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const posts = await fetch(
-    "http://jsonplaceholder.typicode.com/posts?_limit=4"
-  ).then((response) => response.json());
-  return {
-    paths: posts.map((post) => ({
-      params: { id: post.id.toString() },
-    })),
-    fallback: false,
   };
 }
