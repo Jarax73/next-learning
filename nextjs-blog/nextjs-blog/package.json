@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "scripts": {
+    "lint": "next lint",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@next/eslint-plugin-next": "^13.0.4",
+    "next": "latest",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "eslint-config-next": "13.0.4",
+    "prettier": "2.7.1"
+  }
+}
